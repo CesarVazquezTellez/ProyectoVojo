@@ -13,7 +13,7 @@ public class UnidadDAO {
 
     public int insertarUnidad(Unidad unidad) {
 
-        String sql = "INSERT INTO unidades (id_unidad, id_operador, modelo, placas, id_propietario, capacidad, anio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO unidades (id_unidad, id_operador, modelo, marca, placas, id_propietario, capacidad, anio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         int rows = 0;
         
 
@@ -22,10 +22,10 @@ public class UnidadDAO {
             stmt.setInt(2, unidad.getId_operador());
             stmt.setString(3, unidad.getModelo());
             stmt.setString(4, unidad.getMarca());
-            stmt.setString(4, unidad.getPlacas());
-            stmt.setInt(5, unidad.getId_propietario());
-            stmt.setInt(6, unidad.getCapacidad());
-            stmt.setInt(7, unidad.getAnio());
+            stmt.setString(5, unidad.getPlacas());
+            stmt.setInt(6, unidad.getId_propietario());
+            stmt.setInt(7, unidad.getCapacidad());
+            stmt.setInt(8, unidad.getAnio());
             rows = stmt.executeUpdate();
         } catch(SQLException e){ 
             System.out.println("Error al insertar carrera: "+ e.getMessage());

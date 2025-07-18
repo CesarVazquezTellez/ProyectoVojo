@@ -50,8 +50,8 @@ public class JInternalFrameInsertarUnidad extends JInternalFrame {
         // Creación de objetos
         lblIdUnidad = new JLabel("Id:");
         lblIdOperador = new JLabel("Id del operador:");
-        lblMarca = new JLabel("Marca:");
         lblModelo = new JLabel("Modelo:");
+        lblMarca = new JLabel("Marca:");
         lblPlacas = new JLabel("Placas:");
         lblIdPropietario = new JLabel("Id del propietario:");
         lblCapacidad = new JLabel("Capacidad:");
