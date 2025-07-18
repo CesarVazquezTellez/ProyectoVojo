@@ -12,15 +12,12 @@ public class VentanaPrincipal extends JFrame{
 
     public JDesktopPane desktop;  // Escritorio dentro del Frame
     private JMenuBar jMenuBar;
-    private JMenu jMenuAlumnos;
+    private JMenu jMenuUsuarios;
     private JMenu jMenuUnidad;
-    private JMenu jMenuBachilleratos;
-    private JMenuItem jMenuItemInsertar;
-    private JMenuItem jMenuItemVerAlumnos;
+    private JMenuItem jMenuItemInsertarUsuarios;
+    private JMenuItem jMenuItemVerUsuarios;
     private JMenuItem jMenuItemInsertarUnidad;
     private JMenuItem jMenuItemVerUnidad;
-    private JMenuItem JMenuItemInsertarBachillerato;
-    private JMenuItem JMenuItemVerBachilleratos;
 
     public VentanaPrincipal(String title, Connection conn){
         this.conn = conn;
@@ -37,15 +34,20 @@ public class VentanaPrincipal extends JFrame{
         // Barra de Menu
         jMenuBar = new JMenuBar();
         // this.add(jMenuBar);
-        // Menu Alumnos
-        jMenuAlumnos = new JMenu();
-        jMenuAlumnos.setText("Alumnos");
+        // Menu Usuarios
+        jMenuUsuarios = new JMenu();
+        jMenuUsuarios.setText("Usuarios");
         // Elemento de menu: Insertar
-        jMenuItemInsertar = new JMenuItem();
-        jMenuItemInsertar.setText("Insertar...");
+        jMenuItemInsertarUsuarios = new JMenuItem();
+        jMenuItemInsertarUsuarios.setText("Insertar...");
         // Elemento de menu: Ver alumnos
-        jMenuItemVerAlumnos = new JMenuItem();
-        jMenuItemVerAlumnos.setText("Ver todos los alumnos...");
+        jMenuItemVerUsuarios = new JMenuItem();
+        jMenuItemVerUsuarios.setText("Ver todos los usuarios...");
+
+         //Agregar el listener de eventos para ejecutar la accion de insertar usuarios
+        jMenuItemInsertarUsuarios.addActionListener(e -> insertarUsuarios());
+
+
 
         // Menú Unidades
         jMenuUnidad = new JMenu();
@@ -57,41 +59,38 @@ public class VentanaPrincipal extends JFrame{
         jMenuItemInsertarUnidad = new JMenuItem();
         jMenuItemInsertarUnidad.setText("Insertar...");
 
-        // Menu Bachilleratos
-        jMenuBachilleratos = new JMenu();
-        jMenuBachilleratos.setText("Bachilleratos");
-
-        // Elemento de menu: Ver Bachilleratos
-        JMenuItemVerBachilleratos = new JMenuItem();
-        JMenuItemVerBachilleratos.setText("Ver todos los bachilleratos...");
-
-        // Elemento de menu: Insertar Bachillerato
-        JMenuItemInsertarBachillerato = new JMenuItem();
-        JMenuItemInsertarBachillerato.setText("Insertar...");
-
         //Agregar el listener de eventos para ejecutar la accion de insertar unidad
         jMenuItemInsertarUnidad.addActionListener(e -> insertarUnidad());
-
+       
 
 
         // Agregar menuItem a menu 
-        jMenuAlumnos.add(jMenuItemVerAlumnos);
-        jMenuAlumnos.add(jMenuItemInsertar);
-        jMenuBar.add(jMenuAlumnos);
+
+        jMenuUsuarios.add(jMenuItemVerUsuarios);
+        jMenuUsuarios.add(jMenuItemInsertarUsuarios);
+        jMenuBar.add(jMenuUsuarios);
 
         jMenuUnidad.add(jMenuItemVerUnidad);
         jMenuUnidad.add(jMenuItemInsertarUnidad);
         jMenuBar.add(jMenuUnidad);
 
-        jMenuBachilleratos.add(JMenuItemVerBachilleratos);
-        jMenuBachilleratos.add(JMenuItemInsertarBachillerato);
-        jMenuBar.add(jMenuBachilleratos);
-
         this.setJMenuBar(jMenuBar);
         pack();
     }
 
+
+    private void insertarUsuarios(){
+        //1. Crear un objeto tipo JInternalFrame 
+        JInternalFrameInsertarUsuarios insertarUsuarios = new JInternalFrameInsertarUsuarios(this.conn);
+
+        //2. Agregar el internal frame al escritorio(desktop)
+        this.desktop.add(insertarUsuarios);
+
+        //3. Hacer visible el internal frame
+        insertarUsuarios.setVisible(true);
+    }
     private void insertarUnidad(){
+        
         //1. Crear un objeto tipo JInternalFrame 
         JInternalFrameInsertarUnidad insertarUnidad = new JInternalFrameInsertarUnidad(this.conn);
 
